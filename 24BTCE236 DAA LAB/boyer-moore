@@ -1,0 +1,23 @@
+#include <iostream>
+#include <string>
+#include <algorithm>
+#include <functional> // Required for std::boyer_moore_searcher
+
+int main() {
+    std::string text = "ABAAABCD";
+    std::string pattern = "ABC";
+
+    // Create a Boyer-Moore searcher function object
+    std::boyer_moore_searcher searcher(pattern.begin(), pattern.end());
+
+    // Use std::search with the searcher
+    auto it = std::search(text.begin(), text.end(), searcher);
+
+    if (it != text.end()) {
+        std::cout << "Pattern found at index: " << std::distance(text.begin(), it) << std::endl;
+    } else {
+        std::cout << "Pattern not found." << std::endl;
+    }
+
+    return 0;
+}
